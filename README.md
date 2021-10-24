@@ -21,12 +21,10 @@ git clone https://github.com/Yung-Che/Restaurant_List.git
 2. 進入專案資料夾
 ```
 cd Restaurant_List
-
 ```
 3. 安裝所需套件
 ```
 npm install
-
 ```
 4.使用Express 或 Node.js 執行伺服器
 ```
