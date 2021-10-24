@@ -1,5 +1,8 @@
 # 我的餐廳清單
 ![image](https://github.com/Yung-Che/Restaurant_List/blob/main/public/image/show.png)
+![image](https://github.com/Yung-Che/Restaurant_List/blob/main/public/image/info.png)
+![image](https://github.com/Yung-Che/Restaurant_List/blob/main/public/image/search.png)
+
 ### 介紹
 記錄自己的餐廳清單，可以瀏覽餐廳資訊、環境、位置
 
