@@ -14,6 +14,31 @@
 
 ## 安裝流程
 
+1. 打開終端機，複製此專案至本機電腦
+```
+git clone https://github.com/Yung-Che/Restaurant_List.git
+```
+2. 進入專案資料夾
+```
+cd Restaurant_List
+
+```
+3. 安裝所需套件
+```
+npm install
+
+```
+4.使用Express 或 Node.js 執行伺服器
+```
+npm run dev
+```
+
+```
+node app.js
+```
+# 專案開發人員
+>[Yung-Che](https://github.com/Yung-Che)
+
 ## 開發工具
 - Node.js: 14.16.0
 - Express: 4.17.1
