@@ -1,10 +1,24 @@
 // app.js
 // require packages used in the project
 const express = require('express')
+const mongoose = require('mongoose')
 const app = express()
 const exphbs = require('express-handlebars')
 const restaurantList = require('./restaurant.json')
 const port = 3000
+
+mongoose.connect('mongodb://localhost/RestaurantList')
+
+// 取得資料庫連線狀態
+const db = mongoose.connection
+// Error
+db.on('error', () => {
+  console.log('mongodb error')
+})
+// connected
+db.once('open', () => {
+  console.log('mongodb connected!')
+})
 
 // express template engine
 app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
