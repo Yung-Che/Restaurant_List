@@ -51,6 +51,15 @@ app.post('/restaurants', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// detail
+app.get('/restaurants/:id', (req, res) => {
+  const id = req.params.id
+  return Restaurant.findById(id)
+    .lean()
+    .then((restaurant) => res.render('show', { restaurant }))
+    .catch(error => console.log(error))
+})
+
 // setting search bar
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim()
