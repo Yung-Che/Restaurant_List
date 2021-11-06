@@ -1,5 +1,21 @@
 <link rel="stylesheet" href="/stylesheets/index.css">
 
+<header>
+  <!-- navigation -->
+  <nav class="navbar navbar-light bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
+          width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
+        我的餐廳清單
+      </a>
+      <a class="btn navbar-brand" href="/restaurants/new">新增餐廳</a>
+    </div>
+  </nav>
+
+  <div class="banner"></div>
+</header>
+
 <!-- search bar -->
 <div class="container search-bar">
   <div class="search-bar-outer">
@@ -18,13 +34,13 @@
   </div>
 </div>
 
-{{#if restaurant}}
+{{#if restaurants}}
 <!-- restaurant list -->
 <div class="container mt-5">
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
       <div class="card-columns">
-        {{#each restaurant}}
+        {{#each restaurants}}
         <a href="/restaurants/{{this.id}}" class="text-secondary">
           <div class="card mb-3">
             <img class="card-img-top" src="{{this.image}}" alt="{{this.title}}">
@@ -40,6 +56,13 @@
                 <i class="fas fa-star fa-xs"></i>
               </span>
 
+            </div>
+            <div class="col-auto">
+              <a class="btn btn-secondary" href="./todos/{{ this._id }}">detail</a>
+              <a class="btn btn-success" href="./todos/{{ this._id }}/edit">edit</a>
+              <form action="./todos/{{ this._id }}?_method=DELETE" method="POST" style="display: inline;">
+                <button class="btn btn-danger" type="submit">delete</button>
+              </form>
             </div>
           </div>
         </a>
