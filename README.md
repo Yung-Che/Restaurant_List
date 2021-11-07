@@ -45,5 +45,7 @@ node app.js
 - Express-handlebars: 5.3.4
 - Bootstrap: 4.2.1
 - Font Awesome: 5.15.4
-
+- body-parser: 1.19.0
+- MongoDB
+- mongoose: 6.0.12
 
