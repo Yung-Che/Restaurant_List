@@ -61,16 +61,6 @@ app.get('/restaurants/:id', (req, res) => {
 })
 
 // edit
-// 更新餐廳
-app.put("/restaurants/:id/edit", (req, res) => {
-  const { restaurantId } = req.params
-  Restaurant.findByIdAndUpdate(restaurantId, req.body)
-    //可依照專案發展方向自定編輯後的動作，這邊是導向到瀏覽特定餐廳頁面
-    .then(() => res.redirect(`/restaurants/${restaurantId}`))
-    .catch(err => console.log(err))
-})
-
-
 app.get('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
@@ -118,11 +108,18 @@ app.post('/restaurants/:id/delete', (req, res) => {
 
 // setting search bar
 app.get('/search', (req, res) => {
-  const keyword = req.query.keyword.trim()
-  return Restaurant.filter(restaurant => {
-    restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.toLowerCase().includes(keyword.toLowerCase()) || restaurant.name_en.toLowerCase().includes(keyword.toLowerCase())
-  })
-  res.render('index', { Restaurant, keyword: keyword })
+  const keyword = req.query.keyword.trim().toLowerCase()
+  return Restaurant.find({})
+    .lean()
+    .then(restaurants => {
+      const filterRestaurants = restaurants.filter(
+        data =>
+          data.name.toLowerCase().includes(keyword) ||
+          data.category.includes(keyword)
+      )
+      res.render("index", { restaurants: filterRestaurants, keyword })
+    })
+    .catch(err => console.log(err))
 })
 
 
