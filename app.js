@@ -61,6 +61,16 @@ app.get('/restaurants/:id', (req, res) => {
 })
 
 // edit
+// 更新餐廳
+app.put("/restaurants/:id/edit", (req, res) => {
+  const { restaurantId } = req.params
+  Restaurant.findByIdAndUpdate(restaurantId, req.body)
+    //可依照專案發展方向自定編輯後的動作，這邊是導向到瀏覽特定餐廳頁面
+    .then(() => res.redirect(`/restaurants/${restaurantId}`))
+    .catch(err => console.log(err))
+})
+
+
 app.get('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   return Restaurant.findById(id)
@@ -82,15 +92,15 @@ app.post('/restaurants/:id/edit', (req, res) => {
   const description = req.body.description
   return Restaurant.findById(id)
     .then(restaurant => {
-      restaurant.name = name
-      restaurant.name_en = name_en
-      restaurant.category = category
-      restaurant.image = image
-      restaurant.location = location
-      restaurant.phone = phone
-      restaurant.google_map = google_map
-      restaurant.rating = rating
-      restaurant.description = description
+      restaurant.name = name,
+        restaurant.name_en = name_en,
+        restaurant.category = category,
+        restaurant.image = image,
+        restaurant.location = location,
+        restaurant.phone = phone,
+        restaurant.google_map = google_map,
+        restaurant.rating = rating,
+        restaurant.description = description
       return restaurant.save()
     })
     .then(() => res.redirect(`/restaurants/${id}`))
@@ -109,16 +119,12 @@ app.post('/restaurants/:id/delete', (req, res) => {
 // setting search bar
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword.trim()
-  const restaurant = restaurantList.results.filter(restaurant => {
-    return restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.toLowerCase().includes(keyword.toLowerCase()) || restaurant.name_en.toLowerCase().includes(keyword.toLowerCase())
+  return Restaurant.filter(restaurant => {
+    restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.toLowerCase().includes(keyword.toLowerCase()) || restaurant.name_en.toLowerCase().includes(keyword.toLowerCase())
   })
-  res.render('index', { restaurant: restaurant, keyword: keyword })
+  res.render('index', { Restaurant, keyword: keyword })
 })
 
-// app.get('/restaurants/:restaurant_id', (req, res) => {
-//   const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
-//   res.render('show', { restaurant: restaurant })
-// })
 
 app.listen(port, () => {
   console.log(`Express is listening on localhost:${port}`)

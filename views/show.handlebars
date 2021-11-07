@@ -48,7 +48,10 @@
 
 <div class="text-center">
   <a class="btn btn-outline-secondary" href="/">返回首頁</a>
-  <a class="btn btn-success" href="/restaurants/{{ this._id }}/edit">edit</a>
+  <a class="btn btn-success" href="/restaurants/{{ restaurant._id }}/edit">edit</a>
+  <form action="/restaurants/{{ restaurant._id }}/delete" method="POST" style="display: inline;">
+    <button class="btn btn-danger" type="submit">delete</button>
+  </form>
 </div>
 
 </html>
