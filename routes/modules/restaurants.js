@@ -9,8 +9,8 @@ router.get('/new', (req, res) => {
 
 router.post('/', (req, res) => {
   const userId = req.user._id
-  const { name, name_en, category, image, location, phone, google_map, description } = req.body
-  Restaurant.create({ name, name_en, category, image, location, phone, google_map, description, userId })
+  const { name, name_en, category, image, location, phone, google_map, rating, description } = req.body
+  Restaurant.create({ name, name_en, category, image, location, phone, google_map, rating, description, userId })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
 router.get('/:id', (req, res) => {
   const userId = req.user._id
   const id = req.params.id
-  return Restaurant.findById({ _id: id, userId })
+  return Restaurant.findOne({ id, userId })
     .lean()
     .then((restaurant) => res.render('show', { restaurant }))
     .catch(error => console.log(error))
@@ -29,7 +29,7 @@ router.get('/:id', (req, res) => {
 router.get('/:id/edit', (req, res) => {
   const userId = req.user._id
   const id = req.params.id
-  return Restaurant.findById({ _id: id, userId })
+  return Restaurant.findOne({ id, userId })
     .lean()
     .then((restaurant) => res.render('edit', { restaurant }))
     .catch(error => console.log(error))
@@ -47,7 +47,7 @@ router.put('/:id', (req, res) => {
   const google_map = req.body.google_map
   const rating = req.body.rating
   const description = req.body.description
-  return Restaurant.findById(id)
+  return Restaurant.findOne({ id, userId})
     .then(restaurant => {
       restaurant.name = name,
         restaurant.name_en = name_en,
@@ -69,7 +69,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
   const userId = req.user._id
   const id = req.params.id
-  return Restaurant.findById({ _id: id, userId })
+  return Restaurant.findOne({ id, userId })
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
