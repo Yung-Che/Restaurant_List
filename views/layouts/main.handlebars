@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Restaurant List</title>
 
+  <link rel="stylesheet" href="/stylesheets/index.css">
   <link rel="stylesheet" href="/stylesheets/bootstrap.css">
   <script src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" data-auto-replace-svg="nest"></script>
 
@@ -14,7 +15,28 @@
 
 <body>
 
+  <header>
+    <!-- navigation -->
+    <nav class="navbar navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <img src="https://assets-lighthouse.s3.amazonaws.com/uploads/image/file/6227/restaurant-list-logo.png"
+            width="30" height="30" class="d-inline-block align-top" alt="我的餐廳清單">
+          {{#if isAuthenticated}}{{ user.name }}{{/if}}我的餐廳清單
+        </a>
+        {{#if isAuthenticated}}
+        <div>
+          <a class="btn navbar-brand" href="/restaurants/new">新增餐廳</a>
+          <a class="btn navbar-brand" href="/users/logout">登出</a>
+        </div>
+        {{else}}
+          <a class="btn navbar-brand" href="/users/login">登入</a>
+        {{/if}}
+      </div>
+    </nav>
   
+    <div class="banner"></div>
+  </header>
 
   {{!-- partial template will replace th part --}}
   {{{body}}}
