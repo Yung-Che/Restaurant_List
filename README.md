@@ -1,4 +1,5 @@
 # 我的餐廳清單
+![image](https://github.com/Yung-Che/Restaurant_List/blob/main/public/image/login.png)
 ![image](https://github.com/Yung-Che/Restaurant_List/blob/main/public/image/show.png)
 ![image](https://github.com/Yung-Che/Restaurant_List/blob/main/public/image/detail.png)
 
@@ -6,13 +7,16 @@
 記錄自己的餐廳清單，可以瀏覽餐廳資訊、環境、位置
 
 ### 功能
-1. 查看所有餐廳
-2. 瀏覽餐廳詳細資訊
-3. 連結google map 
-4. 搜尋指定餐廳
-5. 新增餐廳
-6. 刪除餐廳
-7. 修改餐廳資訊
+1. 可以註冊帳號個人帳號
+2. 使用個人帳號登入
+3. 使用Facebook登入
+4. 查看所有餐廳
+5. 瀏覽餐廳詳細資訊
+6. 連結google map 
+7. 搜尋指定餐廳
+8. 新增餐廳
+9. 刪除餐廳
+10. 修改餐廳資訊
 
 ## 安裝流程
 
